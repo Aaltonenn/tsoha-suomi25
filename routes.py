@@ -24,9 +24,6 @@ def home():
         while i<len(newfollows):
             followslist.append([newfollows[i],threadtitles[i]])
             i=i+1
-        print(session["admin"])
-        print(session["admin"])
-        print(session["admin"])
         return render_template("index.html", count=len(subjectarea), subjectarea=subjectarea, followslist=followslist)
 
     except:
@@ -64,7 +61,6 @@ def login():
         session["username"] = username
         session["id"] = id[0]
         session["admin"] = result
-        print(result)
         
         return redirect("/")
     elif result == "Käyttäjää ei löydy":
@@ -108,7 +104,7 @@ def userpage(id):
             admin = "ylläpitäjä."
         elif found[2] == 0:
             admin = "tavallinen käyttäjä."
-        return "Käyttäjä " + str(found[0]) + " on " + str(admin)
+        return render_template("user.html", username=found[0],admin=admin)
     else:
         return "SINULLA EI OLE OIKEUKSIA OLLA TÄÄLLÄ!!"
 
@@ -147,7 +143,7 @@ def sendsubjectarea():
     if len(subjectareashortname) >= 20:
         return "Keskustelualueen lyhytnimi on liian pitkä"
     functions.addsubjectarea(subjectareaname, subjectareashortname)
-    return redirect("/subjectareashortname")
+    return redirect("/subjectarea/subjectareashortname")
 
 @app.route("/newcomment/<int:id>")
 def newcomment(id):
