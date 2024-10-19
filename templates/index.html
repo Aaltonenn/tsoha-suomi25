@@ -1,0 +1,47 @@
+{% if session.username %}
+<h1>TERVETULOA SUOMI25 KESKUSTELUPALSTALLE JOKA ON MAAILMAN PARAS KESKUSTELUPALSTA IKINÄ</h1>
+
+<p>Olet kirjautunut nimellä {{ session.username }}</p>
+<a href="/logout">Kirjaudu ulos</a>
+<a href="/user/{{ session.id }}">Omat tiedot</a>
+
+
+
+<hr>
+{%if followlist != []%}
+<h2>Seuraamasi keskustelut:</h2>
+{% for follow in followslist %}
+<a href="/thread/{{ follow[0] }}">{{ follow[1] }}</a>
+<hr>
+{% endfor %}
+{% endif %}
+
+
+
+
+<h2>Kaikki keskustelualueet (keskusteluaihealueiden määrä: {{ count }}):</h2>
+{% if session.admin == 1%}
+<p></p>
+<a href="/newsubjectarea">Klikkaa tästä luodaksesi uuden keskustelualueen (vain ylläpitäjille).</a>
+{% endif %}
+
+<hr>
+{% for subjectarea in subjectarea %}
+<a href="/subjectarea/{{ subjectarea.shortname }}">{{ subjectarea.subjectarea }}</a>
+<hr>
+{% endfor %}
+
+{% else %}
+<form action="/login" method="POST">
+<p>Tunnus:<br>
+<input type="text" name="username"></p>
+<p>Salasana:<br>
+<input type="password" name="password"></p>
+<input type="submit" value="Kirjaudu">
+</form>
+<a href="/signinpage">Luo uusi käyttäjä</a>
+
+{% endif %}
+
+
+

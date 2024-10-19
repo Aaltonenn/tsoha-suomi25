@@ -1,0 +1,24 @@
+<a href="/"><h1>SUOMI25</h1></a>
+<p>Kommenttien määrä: {{ count }}</p>
+
+<h1> {{ threadstarter }}: {{threadtitle}} </h1>
+<h2> {{threadcontent}} </h2>
+{%if isfollowed == False%}
+<a href="/follow/{{threadid}}">Seuraa tätä keskustelua:</a>
+{%endif%}
+
+{%if isfollowed == True%}
+<a href="/unfollow/{{threadid}}">Lopeta keskustelun seuraaminen:</a>
+{%endif%}
+
+<a href="/newcomment/{{threadid}}">Luo uusi kommentti:</a>
+
+<hr>
+{% for comment in comments %}
+<a> 
+<p>{{ comment.username }}:</p> 
+{{ comment.content }} 
+<p>
+{{comment.time}}</a></p>
+<hr>
+{% endfor %}

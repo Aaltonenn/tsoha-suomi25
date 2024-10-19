@@ -1,0 +1,13 @@
+<a href="/"><h1>SUOMI25</h1></a>
+<p>TÄÄLLÄ SAA PUHUA VAIN JA AINOASTAAN AIHEESTA: {{subjectareaname}}</p>
+
+
+<a href="/newthread"> Luo uusi keskustelu</a>
+<p>Keskustelut:</p>
+
+<hr>
+{% for thread in threads %}
+
+<a href="/thread/{{ thread.id }}">{{ thread.title }}</a>
+<hr>
+{% endfor %}
