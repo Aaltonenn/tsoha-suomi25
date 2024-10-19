@@ -1,6 +1,20 @@
-Käyttäjien määrä: {{ count }}
-<hr>
-{% for user in users %}
-{{ user.username }}
-<hr>
-{% endfor %}
+<!DOCTYPE html>
+<html lang="fi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Suomi25</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+</head>
+<body>
+    Käyttäjien määrä: {{ count }}
+    <hr>
+    {% for user in users %}
+    {{ user.username }}
+    <hr>
+    {% endfor %}
+    
+    
+</body>
+</html>
+

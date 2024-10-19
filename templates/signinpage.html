@@ -1,10 +1,3 @@
-<form action="/signinnew" method="POST">
-<p>Käyttäjänimi (maksimipituus on 30 merkkiä):<br>
-<input type="text" name="username"></p>
-<p>Salasana (vähintään 8 merkkiä pitkä):<br>
-<input type="password" name="password"></p>
-Haluatko olla ylläpitäjä?
-<p>
 
 <input type="radio" name="admin" value=1> Kyllä
 <input type="radio" name="admin" value=0> En
@@ -12,13 +5,24 @@ Haluatko olla ylläpitäjä?
 <input type="submit" value="Luo käyttäjä">
 </form>
 
-<script>
-function check(form) {
-    if (form.username.value.lenght > 30) {
-        alert("Käyttäjänimi on liian pitkä");
-        return false
-    }
-    return true;
-}
 
-</script>
+<!DOCTYPE html>
+<html lang="fi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Suomi25</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+</head>
+<body>
+    <form action="/signinnew" method="POST">
+        <p>Käyttäjänimi (maksimipituus on 30 merkkiä):<br>
+        <input type="text" name="username"></p>
+        <p>Salasana (vähintään 8 merkkiä pitkä):<br>
+        <input type="password" name="password"></p>
+        Haluatko olla ylläpitäjä?
+        <p>
+        
+</body>
+</html>
+
