@@ -47,12 +47,16 @@ def logingetuser(username, password):
     result = db.session.execute(sql, {"username":username})
     user = result.fetchone()
     print(user)
+    print(user)
+    print(user)
+    print(user)
+    print(user)
     if not user:
         return "Käyttäjää ei löydy"
     else:
         hash_value = user.password
         if check_password_hash(hash_value, password):
-            return "Oikein"
+            return user[0]
         else:
             return "Väärä salasana"
 

@@ -1,7 +1,7 @@
 <form action="/signinnew" method="POST">
-<p>Käyttäjänimi (tämä näkyy kaikille muille käyttäjille):<br>
+<p>Käyttäjänimi (maksimipituus on 30 merkkiä):<br>
 <input type="text" name="username"></p>
-<p>Salasana:<br>
+<p>Salasana (vähintään 8 merkkiä pitkä):<br>
 <input type="password" name="password"></p>
 Haluatko olla ylläpitäjä?
 <p>
@@ -11,3 +11,14 @@ Haluatko olla ylläpitäjä?
 <p>
 <input type="submit" value="Luo käyttäjä">
 </form>
+
+<script>
+function check(form) {
+    if (form.username.value.lenght > 30) {
+        alert("Käyttäjänimi on liian pitkä");
+        return false
+    }
+    return true;
+}
+
+</script>

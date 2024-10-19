@@ -24,6 +24,9 @@ def home():
         while i<len(newfollows):
             followslist.append([newfollows[i],threadtitles[i]])
             i=i+1
+        print(session["admin"])
+        print(session["admin"])
+        print(session["admin"])
         return render_template("index.html", count=len(subjectarea), subjectarea=subjectarea, followslist=followslist)
 
     except:
@@ -56,14 +59,13 @@ def login():
     username = str(request.form["username"])
     password = str(request.form["password"])
     result = functions.logingetuser(username, password)
-    if result == "Oikein":
+    if result == 1 or result == 0:
         id = functions.getuserid(username)
         session["username"] = username
         session["id"] = id[0]
-        session["admin"] = result[0]
-        print(session["admin"])
-        print(session["admin"])
-        print(session["admin"])
+        session["admin"] = result
+        print(result)
+        
         return redirect("/")
     elif result == "Käyttäjää ei löydy":
         return result
@@ -80,6 +82,10 @@ def signinpage():
 def signinnew():
     username = str(request.form["username"])
     password = str(request.form["password"])
+    if len(username) >= 30:
+        return "Käyttäjänimi on liian pitkä"
+    if len(password) <= 8:
+        return "Salasana on liian lyhyt"
     admin = int(request.form["admin"])
     functions.adduser(username, password, admin)
     return redirect("/")
@@ -93,8 +99,6 @@ def logout():
 @app.route("/user/<int:id>")
 def userpage(id):
     if id == session["id"]:
-        print(id)
-        print(session["id"])
         users = functions.getuserinfo()
         found = users[0]
         for user in users:
@@ -123,6 +127,10 @@ def sendthread():
     content = str(request.form["content"])
     subjectareashortname = subjectarea[2]
     userid= session["id"]
+    if len(title) >= 100:
+        return "Otsikko on liian pitkä"
+    if len(content) >= 5000:
+        return "Viesti on liian pitkä"
     functions.addthread(userid, subjectarea[0], title, content)
     return redirect(f"/subjectarea/{subjectareashortname}")
 
@@ -133,7 +141,11 @@ def newsubjectarea():
 @app.route("/sendsubjectarea", methods=["POST"])
 def sendsubjectarea():
     subjectareaname = request.form["subjectareaname"]
+    if len(subjectareaname) >= 50:
+        return "Keskustelualueen aiheen nimi on liian pitkä"
     subjectareashortname = str(request.form["subjectareashortname"])
+    if len(subjectareashortname) >= 20:
+        return "Keskustelualueen lyhytnimi on liian pitkä"
     functions.addsubjectarea(subjectareaname, subjectareashortname)
     return redirect("/subjectareashortname")
 
@@ -146,7 +158,9 @@ def sendcomment(id):
     comment = request.form["content"]
     userid = session["id"]
     threadid = id
-    username = session["username"]    
+    username = session["username"]   
+    if len(comment) >= 5000:
+        return "Kommentti on liian pitkä" 
     functions.addcomment(userid,threadid,comment, username)
     return redirect(f"/thread/{threadid}")
 
