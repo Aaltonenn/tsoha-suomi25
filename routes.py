@@ -92,16 +92,21 @@ def logout():
 
 @app.route("/user/<int:id>")
 def userpage(id):
-    users = functions.getuserinfo()
-    found = users[0]
-    for user in users:
-        if user[1]==id:
-            found = user
-    if found[2] == 1:
-        admin = "ylläpitäjä."
-    elif found[2] == 0:
-        admin = "tavallinen käyttäjä."
-    return "Käyttäjä " + str(found[0]) + " on " + str(admin)
+    if id == session["id"]:
+        print(id)
+        print(session["id"])
+        users = functions.getuserinfo()
+        found = users[0]
+        for user in users:
+            if user[1]==id:
+                found = user
+        if found[2] == 1:
+            admin = "ylläpitäjä."
+        elif found[2] == 0:
+            admin = "tavallinen käyttäjä."
+        return "Käyttäjä " + str(found[0]) + " on " + str(admin)
+    else:
+        return "SINULLA EI OLE OIKEUKSIA OLLA TÄÄLLÄ!!"
 
 @app.route("/newthread")
 def newthread():
