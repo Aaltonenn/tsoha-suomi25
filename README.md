@@ -43,6 +43,10 @@ source venv/bin/activate
 
 pip install -r requirements.txt
 
+export DATABASE_URL='postgresql+psycopg2://'
+
+pip install psycopg2-binary
+
 # Määritä tietokanta:
 
 psql < schema.sql
