@@ -66,7 +66,7 @@ def logingetuser(username, password):
 
 
 def getcommentsofthread(threadid):
-    sql = "SELECT userid, threadid, time, content, username FROM comments WHERE threadid=:threadid"
+    sql = "SELECT id, userid, threadid, time, content, username FROM comments WHERE threadid=:threadid"
     return db.session.execute(sql, {"threadid":threadid}).fetchall()
 
 def addthread(userid, subjectarea, title, content):
@@ -115,5 +115,23 @@ def checkfollow(userid, threadid):
 def unfollow(userid, threadid):
     sql = "DELETE FROM follows WHERE userid =:userid and threadid =:threadid"
     db.session.execute(sql,{"userid":userid, "threadid":threadid})
+    db.session.commit()
+    return
+
+def deletesubjectarea(shortname):
+    sql = "DELETE FROM subjectarea WHERE shortname=:shortname"
+    db.session.execute(sql, {"shortname":shortname})
+    db.session.commit()
+    return
+
+def deletethread(id):
+    sql = "DELETE FROM threads WHERE id=:id"
+    db.session.execute(sql, {"id":id})
+    db.session.commit()
+    return
+
+def deletecomment(id):
+    sql = "DELETE FROM comments WHERE id=:id"
+    db.session.execute(sql, {"id":id})
     db.session.commit()
     return

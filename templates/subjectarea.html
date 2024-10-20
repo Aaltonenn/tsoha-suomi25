@@ -14,13 +14,29 @@
     <a href="/newthread"> Luo uusi keskustelu</a>
     <p>Keskustelut:</p>
     
+    {%if session.admin == 1%}
     <hr>
     {% for thread in threads %}
     
     <a href="/thread/{{ thread.id }}">{{ thread.title }}</a>
+    <a href="/deletethread/{{ thread.id }}">   Poista keskustelu</a>
     <hr>
     {% endfor %}
-    
+    {%endif%}    
+        
+    {%if session.admin == 0%}
+        <hr>
+        {% for thread in threads %}
+            {%if session.id != thread.userid %}    
+                <a href="/thread/{{ thread.id }}">{{ thread.title }}</a>
+                <hr>
+            {%endif%}
+            {%if session.id == thread.userid%}    
+                <a href="/thread/{{ thread.id }}">{{ thread.title }}<a href="/deletethread/{{ thread.id }}">   Poista keskustelu</a></a>
+                <hr>
+            {%endif%}
+        {% endfor %}
+    {%endif%}    
     
     
 </body>

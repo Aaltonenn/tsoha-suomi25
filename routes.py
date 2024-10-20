@@ -21,10 +21,14 @@ def home():
         threadtitles = functions.getthreadtitles(newfollows)
         followslist = []
         i=0
+        if session["admin"] == 1:
+            deleterights = 1
+        else:
+            deleterights = 0
         while i<len(newfollows):
             followslist.append([newfollows[i],threadtitles[i]])
             i=i+1
-        return render_template("index.html", count=len(subjectarea), subjectarea=subjectarea, followslist=followslist)
+        return render_template("index.html", count=len(subjectarea), subjectarea=subjectarea, followslist=followslist, deleterights = deleterights)
 
     except:
         return render_template("index.html", count=len(subjectarea), subjectarea=subjectarea)
@@ -38,7 +42,11 @@ def loginpage():
 def subjectarea(shortname):
     subjectarea = functions.getsubjectarea(shortname)
     threads = functions.getthreads(subjectarea[0])
-    return render_template("subjectarea.html", threads=threads, subjectareaname=subjectarea[1])
+    if session["admin"] == 1:
+        deleterights = 1
+    else:
+        deleterights = 0
+    return render_template("subjectarea.html", threads=threads, subjectareaname=subjectarea[1], deleterights = deleterights)
     
 @app.route("/thread/<int:id>")
 def thread(id):
@@ -170,3 +178,17 @@ def unfollow(id):
     functions.unfollow(session["id"], id)
     return redirect(f"/thread/{id}")
 
+@app.route("/deletesubjectarea/<string:shortname>")
+def deletesubjectarea(shortname):
+    functions.deletesubjectarea(shortname)
+    return redirect("/")
+
+@app.route("/deletethread/<int:id>")
+def deletethread(id):
+    functions.deletethread(id)
+    return redirect("/")
+
+@app.route("/deletecomment/<int:id>")
+def deletecomment(id):
+    functions.deletecomment(id)
+    return redirect("/")

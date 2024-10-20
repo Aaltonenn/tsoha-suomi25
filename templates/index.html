@@ -34,11 +34,23 @@
 <a href="/newsubjectarea">Klikkaa tästä luodaksesi uuden keskustelualueen (vain ylläpitäjille).</a>
 {% endif %}
 
+{% if session.admin == 1%}
 <hr>
 {% for subjectarea in subjectarea %}
-<a href="/subjectarea/{{ subjectarea.shortname }}">{{ subjectarea.subjectarea }}</a>
+<a href="/subjectarea/{{ subjectarea.shortname }}">{{ subjectarea.subjectarea }} </a>
+<a href="/deletesubjectarea/{{ subjectarea.shortname }}">    Poista keskustelualue </a>
 <hr>
 {% endfor %}
+{%endif%}
+
+{% if session.admin == 0%}
+<hr>
+{% for subjectarea in subjectarea %}
+<a href="/subjectarea/{{ subjectarea.shortname }}">{{ subjectarea.subjectarea }} </a>
+<hr>
+{% endfor %}
+{%endif%}
+
 
 {% else %}
 <p>Sinun on kirjauduttava sisään käyttääksesi Suomi25-palvelua</p>

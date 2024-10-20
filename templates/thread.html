@@ -22,17 +22,44 @@
     <a href="/unfollow/{{threadid}}">Lopeta keskustelun seuraaminen:</a>
     {%endif%}
     
-    <a href="/newcomment/{{threadid}}">Luo uusi kommentti:</a>
+    <a href="/newcomment/{{threadid}}">  Luo uusi kommentti:</a>
+
     
+    {%if session.admin == 0%}
+    <hr>
+        {% for comment in comments %}
+        <a>
+            {%if comment.userid == session.id %}
+                <p>{{ comment.username }}: <a href="/deletecomment/{{ comment.id }}">  Poista kommentti </a></p> 
+                {{ comment.content }} 
+                <p>
+                {{comment.time}}</a></p>
+            <hr>
+            {%endif%}
+            {%if comment.userid != session.id %}
+                <p>{{ comment.username }}:</p> 
+                {{ comment.content }} 
+                <p>
+                {{comment.time}}</a></p>
+            <hr>
+            {%endif%}
+            
+
+        {% endfor %}
+    {%endif%}
+
+    {%if session.admin == 1%}
     <hr>
     {% for comment in comments %}
     <a> 
     <p>{{ comment.username }}:</p> 
-    {{ comment.content }} 
+    {{ comment.content }} <a href="/deletecomment/{{ comment.id }}">  Poista kommentti </a>
+
     <p>
     {{comment.time}}</a></p>
     <hr>
     {% endfor %}
+    {%endif%}
     
     
 </body>
