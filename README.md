@@ -21,17 +21,32 @@ Sivustolla tavalliset käyttäjät pystyvät luomaan uusia keskusteluja ja komme
 
 ## Miten käyttää sivua
 
-Kloonaa tämä repositorio tietokoneellesi ja siirry sen juurikansioon. Luo kansioon .env-tiedosto ja määritä sen sisältö seuraavanlaiseksi:
+Voit joko käynnistää fly.ion kautta tai asentamalla repositorion:
 
 
-# Clone this repository
-$ git clone https://github.com/amitmerchant1990/electron-markdownify
 
-# Go into the repository
-$ cd electron-markdownify
+# Asentamalla repositorio:
 
-# Install dependencies
-$ npm install
+Kloonaa tämä repositorio tietokoneellesi ja siirry sen juurikansioon. 
 
-# Run the app
-$ npm start
+# Luo .env
+Luo kansioon .env-tiedosto ja määritä sen sisältö seuraavanlaiseksi:
+
+DATABASE_URL=postgresql+psycopg2://
+SECRET_KEY=90f13b356feac92e95c8e1789de91ed1
+
+# Aktivoi virtuaaliympäristö ja asenna sovelluksen riippuvuudet komennoilla:
+
+python3 -m venv venv
+
+source venv/bin/activate
+
+pip install -r requirements.txt
+
+# Määritä tietokanta:
+
+psql < schema.sql
+
+# Käynnistä sovellus
+
+flask run
