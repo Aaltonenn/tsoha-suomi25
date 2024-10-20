@@ -29,11 +29,6 @@ Voit joko käynnistää fly.ion kautta tai asentamalla repositorion:
 
 Kloonaa tämä repositorio tietokoneellesi ja siirry sen juurikansioon. 
 
-# Luo .env
-Luo kansioon .env-tiedosto ja määritä sen sisältö seuraavanlaiseksi:
-
-DATABASE_URL=postgresql+psycopg2://
-SECRET_KEY=90f13b356feac92e95c8e1789de91ed1
 
 # Aktivoi virtuaaliympäristö ja asenna sovelluksen riippuvuudet komennoilla:
 
@@ -45,7 +40,10 @@ pip install -r requirements.txt
 
 export DATABASE_URL='postgresql+psycopg2://'
 
+export SECRET_KEY=90f13b356feac92e95c8e1789de91ed1
+ 
 pip install psycopg2-binary
+
 
 # Määritä tietokanta:
 
