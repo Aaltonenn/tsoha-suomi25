@@ -43,3 +43,4 @@ CREATE TABLE follows (
 	id SERIAL PRIMARY KEY,
 	userid INTEGER,
 	threadid INTEGER
+);
