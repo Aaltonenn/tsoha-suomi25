@@ -21,8 +21,7 @@ Sivustolla tavalliset käyttäjät pystyvät luomaan uusia keskusteluja ja komme
 
 ## Miten käyttää sivua
 
-Voit joko käynnistää fly.ion kautta tai asentamalla repositorion:
-
+Voit ladata repositorion githubin kautta ja seurata asennusohjeita
 
 
 # Asentamalla repositorio:
