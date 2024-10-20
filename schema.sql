@@ -38,3 +38,8 @@ CREATE TABLE threads (
 	title TEXT,
 	content TEXT
 );
+
+CREATE TABLE follows (
+	id SERIAL PRIMARY KEY,
+	userid INTEGER,
+	threadid INTEGER
