@@ -108,6 +108,7 @@ google-auth-httplib2==0.2.0
 gpg==1.18.0
 greenlet==3.0.3
 gssapi==1.8.2
+gunicorn==20.1.0
 h5netcdf==1.3.0
 h5py==3.10.0
 h5py._debian_h5py_serial==3.10.0
