@@ -21,9 +21,9 @@ Sivustolla tavalliset käyttäjät pystyvät luomaan uusia keskusteluja ja komme
 
 ## Miten käyttää sivua
 
-To clone and run this application, you'll need [Git](https://git-scm.com) and [Node.js](https://nodejs.org/en/download/) (which comes with [npm](http://npmjs.com)) installed on your computer. From your command line:
+Kloonaa tämä repositorio tietokoneellesi ja siirry sen juurikansioon. Luo kansioon .env-tiedosto ja määritä sen sisältö seuraavanlaiseksi:
 
-```bash
+
 # Clone this repository
 $ git clone https://github.com/amitmerchant1990/electron-markdownify
 
@@ -35,4 +35,3 @@ $ npm install
 
 # Run the app
 $ npm start
-```
